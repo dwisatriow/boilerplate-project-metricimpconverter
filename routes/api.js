@@ -1,10 +1,45 @@
-'use strict';
+"use strict";
 
-const expect = require('chai').expect;
-const ConvertHandler = require('../controllers/convertHandler.js');
+const expect = require("chai").expect;
+const ConvertHandler = require("../controllers/convertHandler.js");
 
 module.exports = function (app) {
-  
-  let convertHandler = new ConvertHandler();
+  app.route("/api/convert").get((req, res) => {
+    let convertHandler = new ConvertHandler();
+    let result;
 
+    const input = req.query.input;
+    const initNum = convertHandler.getNum(input);
+    const initUnit = convertHandler.getUnit(input);
+    const returnUnit = convertHandler.getReturnUnit(initUnit);
+
+    if (initNum === "invalid number" || initUnit === "invalid unit") {
+      if (initNum == "invalid number") {
+        result = initNum;
+      } else if (initUnit == "invalid unit") {
+        result = initUnit;
+      } else {
+        result = "invalid number and unit";
+      }
+    } else {
+      const returnNum = convertHandler.convert(initNum, initUnit).toFixed(5);
+      const string = convertHandler.getString(
+        initNum,
+        initUnit,
+        returnNum,
+        returnUnit
+      );
+
+      result = {
+        initNum,
+        initUnit,
+        returnNum,
+        returnUnit,
+        string,
+      };
+    }
+
+    // console.log(result);
+    res.json(result);
+  });
 };
