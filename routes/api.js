@@ -10,8 +10,8 @@ module.exports = function (app) {
 
     const input = req.query.input;
     const initNum = convertHandler.getNum(input);
-    const initUnit = convertHandler.getUnit(input);
-    const returnUnit = convertHandler.getReturnUnit(initUnit);
+    let initUnit = convertHandler.getUnit(input);
+    let returnUnit = convertHandler.getReturnUnit(initUnit);
 
     if (initNum === "invalid number" || initUnit === "invalid unit") {
       if (initNum === "invalid number" && initUnit === "invalid unit") {
@@ -31,6 +31,7 @@ module.exports = function (app) {
       );
 
       if (initUnit === "l") initUnit = "L";
+      if (returnUnit === "l") returnUnit = "L";
 
       result = {
         initNum,
