@@ -23,7 +23,7 @@ function ConvertHandler() {
     let unit;
 
     if (charIndex !== -1) {
-      unit = input.substring(charIndex).toLowerCase();
+      unit = input.substring(charIndex);
 
       if (this.getReturnUnit(unit) === "invalid unit") {
         return "invalid unit";
