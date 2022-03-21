@@ -38,7 +38,7 @@ function ConvertHandler() {
   this.getReturnUnit = function (initUnit) {
     switch (initUnit) {
       case "gal":
-        return "L";
+        return "l";
       case "l":
         return "gal";
       case "lbs":
@@ -79,7 +79,7 @@ function ConvertHandler() {
     const miToKm = 1.60934;
     let returnNum;
 
-    switch (initUnit.toLowerCase()) {
+    switch (initUnit) {
       case "gal":
         returnNum = initNum * galToL;
         break;
