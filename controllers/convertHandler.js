@@ -5,16 +5,17 @@ function ConvertHandler() {
 
     if (charIndex === 0 || charIndex === -1) {
       num = 1;
+      return num;
     } else {
       num = input.substring(0, charIndex);
-      if (Number(num)) {
-        num = Number(num);
-      } else {
+      if ((num.match(/\//g) || []).length > 1) {
         return "invalid number";
+      } else if (num.indexOf(".") !== -1 || num.indexOf("/") !== -1) {
+        return eval(num);
+      } else {
+        return Number.parseInt(num);
       }
     }
-
-    return num;
   };
 
   this.getUnit = function (input) {
@@ -76,23 +77,33 @@ function ConvertHandler() {
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
+    let returnNum;
 
     switch (initUnit) {
       case "gal":
-        return initNum * galToL;
+        returnNum = initNum * galToL;
+        break;
       case "L":
-        return initNum * (1 / galToL);
+        returnNum = initNum * (1 / galToL);
+        break;
       case "lbs":
-        return initNum * lbsToKg;
+        returnNum = initNum * lbsToKg;
+        break;
       case "kg":
-        return initNum * (1 / lbsToKg);
+        returnNum = initNum * (1 / lbsToKg);
+        break;
       case "mi":
-        return initNum * miToKm;
+        returnNum = initNum * miToKm;
+        break;
       case "km":
-        return initNum * (1 / miToKm);
+        returnNum = initNum * (1 / miToKm);
+        break;
       default:
-        return "invalid unit";
+        returnNum = "invalid unit";
+        break;
     }
+
+    return returnNum.toFixed(5);
   };
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {

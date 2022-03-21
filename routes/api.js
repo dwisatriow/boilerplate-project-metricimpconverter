@@ -22,7 +22,7 @@ module.exports = function (app) {
         result = "invalid number and unit";
       }
     } else {
-      const returnNum = convertHandler.convert(initNum, initUnit).toFixed(5);
+      const returnNum = convertHandler.convert(initNum, initUnit);
       const string = convertHandler.getString(
         initNum,
         initUnit,
@@ -39,7 +39,6 @@ module.exports = function (app) {
       };
     }
 
-    // console.log(result);
     res.json(result);
   });
 };
