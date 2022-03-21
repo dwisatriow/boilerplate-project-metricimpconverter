@@ -30,6 +30,8 @@ module.exports = function (app) {
         returnUnit
       );
 
+      if (initUnit === "l") initUnit = "L";
+
       result = {
         initNum,
         initUnit,

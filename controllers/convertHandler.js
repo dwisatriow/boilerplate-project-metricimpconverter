@@ -23,7 +23,7 @@ function ConvertHandler() {
     let unit;
 
     if (charIndex !== -1) {
-      unit = input.substring(charIndex);
+      unit = input.substring(charIndex).toLowerCase();
 
       if (this.getReturnUnit(unit) === "invalid unit") {
         return "invalid unit";
@@ -36,7 +36,7 @@ function ConvertHandler() {
   };
 
   this.getReturnUnit = function (initUnit) {
-    switch (initUnit.toLowerCase()) {
+    switch (initUnit) {
       case "gal":
         return "L";
       case "l":
@@ -55,7 +55,7 @@ function ConvertHandler() {
   };
 
   this.spellOutUnit = function (unit) {
-    switch (unit.toLowerCase()) {
+    switch (unit) {
       case "gal":
         return "gallons";
       case "l":
