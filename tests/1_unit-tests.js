@@ -55,7 +55,7 @@ suite("Unit Tests", function () {
 
   test("return the correct return unit for each valid input unit", function () {
     const unitPair = {
-      gal: "L",
+      gal: "l",
       L: "gal",
       lbs: "kg",
       kg: "lbs",
@@ -73,7 +73,7 @@ suite("Unit Tests", function () {
   test("return the spelled-out string unit for each valid input unit", function () {
     const unitPair = {
       gal: "gallons",
-      L: "liters",
+      l: "liters",
       lbs: "pounds",
       kg: "kilograms",
       mi: "miles",
@@ -91,7 +91,8 @@ suite("Unit Tests", function () {
     const initNum = convertHandler.getNum(input);
     const initUnit = convertHandler.getUnit(input);
     const returnNum = convertHandler.convert(initNum, initUnit);
-    const returnUnit = convertHandler.getReturnUnit(initUnit);
+    let returnUnit = convertHandler.getReturnUnit(initUnit);
+    returnUnit = returnUnit.toUpperCase();
     const result = returnNum.toString() + returnUnit;
 
     assert.equal(result, "7.57082L");
