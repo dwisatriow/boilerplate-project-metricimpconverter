@@ -11,7 +11,7 @@ function ConvertHandler() {
       if ((num.match(/\//g) || []).length > 1) {
         return "invalid number";
       } else if (num.indexOf(".") !== -1 || num.indexOf("/") !== -1) {
-        return eval(num);
+        return Number.parseFloat(eval(num).toFixed(2));
       } else {
         return Number.parseInt(num);
       }
@@ -23,7 +23,7 @@ function ConvertHandler() {
     let unit;
 
     if (charIndex !== -1) {
-      unit = input.substring(charIndex);
+      unit = input.substring(charIndex).toLowerCase();
 
       if (this.getReturnUnit(unit) === "invalid unit") {
         return "invalid unit";
@@ -36,7 +36,7 @@ function ConvertHandler() {
   };
 
   this.getReturnUnit = function (initUnit) {
-    switch (initUnit) {
+    switch (initUnit.toLowerCase()) {
       case "gal":
         return "L";
       case "L":
@@ -103,13 +103,13 @@ function ConvertHandler() {
         break;
     }
 
-    return returnNum.toFixed(5);
+    return Number.parseFloat(returnNum.toFixed(5));
   };
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
-    let string = `${initNum} ${this.spellOutUnit(
+    let string = `${initNum.toString()} ${this.spellOutUnit(
       initUnit
-    )} converts to ${returnNum} ${this.spellOutUnit(returnUnit)}`;
+    )} converts to ${returnNum.toString()} ${this.spellOutUnit(returnUnit)}`;
 
     return string;
   };
