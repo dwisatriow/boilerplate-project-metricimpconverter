@@ -39,7 +39,7 @@ function ConvertHandler() {
     switch (initUnit.toLowerCase()) {
       case "gal":
         return "L";
-      case "L":
+      case "l":
         return "gal";
       case "lbs":
         return "kg";
@@ -55,10 +55,10 @@ function ConvertHandler() {
   };
 
   this.spellOutUnit = function (unit) {
-    switch (unit) {
+    switch (unit.toLowerCase()) {
       case "gal":
         return "gallons";
-      case "L":
+      case "l":
         return "liters";
       case "lbs":
         return "pounds";
@@ -79,11 +79,11 @@ function ConvertHandler() {
     const miToKm = 1.60934;
     let returnNum;
 
-    switch (initUnit) {
+    switch (initUnit.toLowerCase()) {
       case "gal":
         returnNum = initNum * galToL;
         break;
-      case "L":
+      case "l":
         returnNum = initNum * (1 / galToL);
         break;
       case "lbs":
