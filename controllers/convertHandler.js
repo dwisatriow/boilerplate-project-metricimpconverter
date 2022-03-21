@@ -11,7 +11,7 @@ function ConvertHandler() {
       if ((num.match(/\//g) || []).length > 1) {
         return "invalid number";
       } else if (num.indexOf(".") !== -1 || num.indexOf("/") !== -1) {
-        return Number.parseFloat(eval(num).toFixed(2));
+        return Number.parseFloat(eval(num));
       } else {
         return Number.parseInt(num);
       }
